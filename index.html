@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ödeme Yöntemleri</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #E0E5EC;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            height: 100vh;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 375px;
+            border-radius: 25px;
+            overflow: hidden;
+            background: #F0F4F8;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+            transform: scale(0.9);
+            animation: popIn 0.6s ease-in-out forwards;
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0.7);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #537895, #09203f);
+            padding: 25px;
+            color: white;
+            text-align: center;
+            position: relative;
+            border-bottom-left-radius: 25px;
+            border-bottom-right-radius: 25px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            animation: slideDown 1s ease-in-out;
+        }
+
+        @keyframes slideDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h2 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .back-arrow {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: #FFFFFF;
+            cursor: pointer;
+            animation: slideInLeft 1.2s ease-in-out;
+        }
+
+        .back-arrow:hover {
+            color: #CCCCCC;
+        }
+
+        @keyframes slideInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .cards {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            animation: fadeInUp 0.8s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            width: 75px;
+            height: 50px;
+            border-radius: 10px;
+            background-color: #262F51;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .methods {
+            padding: 20px;
+            animation: slideInUp 1s ease-in-out;
+        }
+
+        @keyframes slideInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .methods h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .method {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
+            transition: background-color 0.3s, transform 0.3s;
+            cursor: pointer;
+        }
+
+        .method:hover {
+            background-color: #E4E7EB;
+            transform: translateY(-5px);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .method img {
+            width: 35px;
+            margin-right: 15px;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #537895, #09203f);
+            padding: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+            animation: slideInUp 1s ease-in-out;
+            box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer button {
+            background-color: white;
+            color: #09203f;
+            padding: 10px 25px;
+            border-radius: 50px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+
+        .footer button:hover {
+            background-color: #E4E7EB;
+            transform: scale(1.05);
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer span {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: underline;
+            font-size: 14px;
+        }
+
+        .footer a:hover {
+            color: #E4E7EB;
+        }
+
+        .main-footer {
+            background: #262F51;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+            margin-top: 20px;
+            box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.2);
+            font-size: 14px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .main-footer p {
+            margin: 5px 0;
+        }
+
+        .main-footer a {
+            color: #FFFFFF;
+            text-decoration: underline;
+        }
+
+        .main-footer a:hover {
+            color: #E4E7EB;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <span class="back-arrow">&#8592;</span>
+            <h2>Ödeme Yöntemleri</h2>
+        </div>
+        <div class="cards">
+            <div class="card">
+                <img src="https://img.icons8.com/color/48/000000/mastercard-logo.png" alt="MasterCard">
+            </div>
+            <div class="card">
+                <img src="https://img.icons8.com/color/48/000000/visa.png" alt="Visa">
+            </div>
+            <div class="card">
+                <img src="https://img.icons8.com/color/48/000000/paypal.png" alt="PayPal">
+            </div>
+        </div>
+        <div class="methods">
+            <h3>Diğer Ödeme Yöntemleri</h3>
+            <div class="method">
+                <img src="https://img.icons8.com/color/48/000000/bank-card-back-side.png" alt="Kredi/Debit Kartı">
+                <span>Kredi / Debit Kartı</span>
+            </div>
+            <div class="method">
+                <img src="https://img.icons8.com/color/48/000000/google-wallet.png" alt="Google Wallet">
+                <span>Google Cüzdan</span>
+            </div>
+            <div class="method">
+                <img src="https://img.icons8.com/color/48/000000/amazon.png" alt="Amazon Pay">
+                <span>Amazon Pay</span>
+            </div>
+            <div class="method">
+                <img src="https://img.icons8.com/color/48/000000/bitcoin.png" alt="Libra Pay">
+                <span>Libra Pay</span>
+            </div>
+            <div class="method">
+                <img src="https://img.icons8.com/color/48/000000/paypal.png" alt="PayPal">
+                <span>PayPal</span>
+            </div>
+        </div>
+        <div class="footer">
+            <button>Öde</button>
+            <span>$ 359</span>
+            <a href="#">Detayları Gör</a>
+        </div>
+       
+</body>
+
+</html>
